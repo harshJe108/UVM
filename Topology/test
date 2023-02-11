@@ -1,0 +1,13 @@
+class test extends uvm_test;
+  my_env env;
+  `uvm_component_utils(test)
+  extern function new(string name="test",uvm_component parent);
+    extern function void build_phase(uvm_phase phase);
+      endclass
+      function test::new(string name="test",uvm_component parent);
+        super.new(name,parent);
+      endfunction
+      function void test::build_phase(uvm_phase phase);
+        super.build_phase(phase);
+        env=my_env::type_id::create("env",this);
+      endfunction
