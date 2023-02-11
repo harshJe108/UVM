@@ -1,0 +1,9 @@
+`include "uvm_macros.svh"
+`include "testbench_pkg"
+module tb();
+  import uvm_pkg::*;
+  initial
+    begin
+      run_test("test");
+    end
+endmodule
