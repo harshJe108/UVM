@@ -1,0 +1,24 @@
+class my_agent extends uvm_agent;
+  `uvm_component_utils(my_agent)
+  my_driver my_d;
+  my_sequencer my_s;
+  my_monitor my_m;
+  extern function new(string name="my_agent", uvm_component parent);
+    extern function void build_phase(uvm_phase phase);
+      extern function void connect_phase(uvm_phase phase);
+        endclass
+        function my_agent::new(string name="my_agent",uvm_component parent);
+          super.new(name,parent);
+        endfunction
+        
+        function void my_agent::build_phase(uvm_phase phase);
+          super.build_phase(phase);
+          my_d=my_driver::type_id::create("my_d",this);
+          my_s=my_sequencer::type_id::create("my_S",this);
+          my_m=my_monitor::type_id::create("my_m",this);
+        endfunction
+        
+        function void my_agent::connect_phase(uvm_phase phase);
+          super.connect_phase(phase);
+          my_d.seq_item_port.connect(my_s.seq_item_export);
+        endfunction
