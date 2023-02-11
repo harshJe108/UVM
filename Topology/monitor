@@ -1,0 +1,7 @@
+class my_monitor extends uvm_monitor;
+  `uvm_component_utils(my_monitor)
+  extern function new(string name="my_monitor", uvm_component parent);
+    endclass
+    function my_monitor::new(string name="my_monitor", uvm_component parent);
+      super.new(name,parent);
+    endfunction
